@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { BsBell, BsBookmark, BsEnvelope, BsTwitter } from "react-icons/bs";
-import { BiHomeCircle, BiHash, BiUser } from "react-icons/bi";
+import { BiHomeCircle, BiHash, BiUser, BiMoney } from "react-icons/bi";
 import FeedCard from "@/components/FeedCard";
+import { SlOptions } from "react-icons/sl";
 
 interface TwitterSidebarButton {
   title: string;
@@ -33,6 +34,15 @@ const sideBarMenuItems: TwitterSidebarButton[] = [
     title: "Profile",
     icon: <BiUser />,
   },
+  {
+    title: "Twitter Blue",
+    icon: <BiMoney />,
+  },
+  {
+    title: "More",
+    icon: <SlOptions />,
+  },
+  
 ];
 
 export default function Home() {
@@ -54,13 +64,13 @@ export default function Home() {
               </li>
             ))}
             <div className="mt-5 px-3 ">
-              <button className="bg-[#1d9bf0] p-4 rounded-full w-full text-lg font-semibold">
+              <button className="bg-[#1d9bf0] py-2 px-4 rounded-full w-full text-lg font-semibold">
                 Tweet
               </button>
             </div>
           </div>
         </div>
-        <div className="col-span-5 border-r-[1px] border-l-[1px] border border-gray-600">
+        <div className="col-span-5 border-r-[1px] border-l-[1px] aborder-gray-600">
           <FeedCard/>
           <FeedCard/>
           <FeedCard/>
