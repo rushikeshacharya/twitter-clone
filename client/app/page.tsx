@@ -12,11 +12,13 @@ import FeedCard from "@/components/FeedCard";
 import { SlOptions } from "react-icons/sl";
 import { CredentialResponse, GoogleLogin } from "@react-oauth/google";
 import { GoogleOAuthProvider } from "@react-oauth/google";
-import { error, log } from "console";
+import { QueryClientProvider, QueryClient } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { useCallback } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { graphqlClient } from "@/clients/api";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
+import { useCurrentUser } from "@/hooks/user";
 interface TwitterSidebarButton {
   title: string;
   icon: React.ReactNode;
@@ -58,6 +60,11 @@ const sideBarMenuItems: TwitterSidebarButton[] = [
 ];
 
 export default function Home() {
+  const { user } = useCurrentUser();
+  const queryClient = new QueryClient();
+
+  console.log(user);
+
   const handleLoginWithGoogle = useCallback(
     async (cred: CredentialResponse) => {
       const googleToken = cred.credential;
@@ -76,7 +83,7 @@ export default function Home() {
     []
   );
   return (
-    <div>
+    <QueryClientProvider client={queryClient}>
       <GoogleOAuthProvider clientId="581036421482-ag6o05c12q8pqo958b4p61r28jt1sp1g.apps.googleusercontent.com">
         <div className="grid grid-cols-12 h-screen w-screen px-56">
           <div className="col-span-3 pt-8 px-4">
@@ -141,7 +148,8 @@ export default function Home() {
           </div>
         </div>
         <Toaster />
+        <ReactQueryDevtools />
       </GoogleOAuthProvider>
-    </div>
+    </QueryClientProvider>
   );
 }

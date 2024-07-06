@@ -35,6 +35,18 @@
         "isOneOf": null,
         "fields": [
           {
+            "name": "getCurrentUser",
+            "description": null,
+            "args": [],
+            "type": {
+              "kind": "OBJECT",
+              "name": "User",
+              "ofType": null
+            },
+            "isDeprecated": false,
+            "deprecationReason": null
+          },
+          {
             "name": "verifyGoogleToken",
             "description": null,
             "args": [
@@ -87,7 +99,7 @@
         "isOneOf": null,
         "fields": [
           {
-            "name": "emailL",
+            "name": "email",
             "description": null,
             "args": [],
             "type": {

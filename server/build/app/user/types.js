@@ -6,7 +6,7 @@ exports.types = `#graphql
         id: ID!
         firstName: String!
         lastName: String
-        emailL: String!
+        email: String!
         profileImageURL: String
     }
 
