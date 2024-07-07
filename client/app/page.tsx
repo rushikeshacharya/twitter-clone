@@ -19,6 +19,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { graphqlClient } from "@/clients/api";
 import { verifyUserGoogleTokenQuery } from "@/graphql/query/user";
 import { useCurrentUser } from "@/hooks/user";
+
 interface TwitterSidebarButton {
   title: string;
   icon: React.ReactNode;
@@ -58,10 +59,10 @@ const sideBarMenuItems: TwitterSidebarButton[] = [
     icon: <SlOptions />,
   },
 ];
+const queryClient = new QueryClient();
 
 export default function Home() {
   const { user } = useCurrentUser();
-  const queryClient = new QueryClient();
 
   console.log(user);
 
@@ -83,7 +84,7 @@ export default function Home() {
     []
   );
   return (
-    <QueryClientProvider client={queryClient}>
+    <QueryClientProvider client={queryClient} >
       <GoogleOAuthProvider clientId="581036421482-ag6o05c12q8pqo958b4p61r28jt1sp1g.apps.googleusercontent.com">
         <div className="grid grid-cols-12 h-screen w-screen px-56">
           <div className="col-span-3 pt-8 px-4">
